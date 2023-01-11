@@ -18,5 +18,6 @@ This file contains creating an EC2 Instance using Terraform
 
 ## AWS Console
 
+![](aws%20console.png)
 
 
