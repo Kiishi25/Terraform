@@ -1,15 +1,21 @@
-resource "aws_instance" "instances" {
-    for_each = {
-        public = {subnet = var.public_subnet_id, assign_ip = true},
-        private = {subnet = var.private_subnet_id, assign_ip = false}
-    }
-
-    ami = var.ami_id
+resource "aws_instance" "public_instance" {
+    ami = "${var.ami_id}"
     instance_type = "t2.micro"
-    subnet_id = each.value.subnet
-    associate_public_ip_address = each.value.assign_ip
+    subnet_id = "${var.public_subnet_id}"
+    associate_public_ip_address = true
 
     tags = {
-        Name = "${var.environment}-${var.region}-${each.key}-ec2"
+        Name = "${var.environment}-${var.region}-Public"
+    }
+}
+
+resource "aws_instance" "private_instance" {
+    ami = "${var.ami_id}"
+    instance_type = "t2.micro"
+    subnet_id = "${var.private_subnet_id}"
+    associate_public_ip_address = false
+
+    tags = {
+        Name = "${var.environment}-${var.region}-Private"
     }
 }

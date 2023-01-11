@@ -1,16 +1,17 @@
-variable "subnet_map" {
-    default = {
-        public = 1,
-        private = 2
-    }
+ resource "aws_subnet" "public_subnet" {
+    vpc_id = "${var.vpc_id}"
+    cidr_block = "10.0.0.0/24"
+
+     tags = {
+         Name = "${var.environment}-${var.region}-Public-Subnet"
+     }
 }
 
-resource "aws_subnet" "subnets" {
-    for_each = var.subnet_map
-    vpc_id = var.vpc_id
-    cidr_block = cidrsubnet("100.0.0.0/16", 8, each.value)
+ resource "aws_subnet" "private_subnet" {
+     vpc_id = "${var.vpc_id}"
+     cidr_block = "10.0.1.0/24"
 
     tags = {
-        Name = "${var.region}-${var.environment}-${each.key}-subnet"
+         Name = "${var.environment}-${var.region}-Private-Subnet"
     }
 }
