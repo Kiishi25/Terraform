@@ -3,10 +3,10 @@ provider "aws" {
   alias  = "aws-uk"
 }
 
-variable "ami-uk" {
-  description = "machine image uk"
-  default     = "ami-f976839e"
-}
+#variable "ami-uk" {
+#  description = "machine image uk"
+#  default     = "ami-f976839e"
+#}
 
 variable "type" {
   default = "t2.micro"
@@ -15,8 +15,12 @@ variable "type" {
 variable "zone" {
   description = "map of availability zones for eu-west-2"
   default = {
-    1 = "eu-west-2a"
-    2 = "eu-west-2b"
+    # Extenstion Task
+    1 = { zone = "eu-west-2a", ami = "ami-f976839e" }
+    2 = { zone = "eu-west-2b", ami = "ami-01b8d743224353ffe" }
+
+   # 1 = "eu-west-2a"
+   # 2 = "eu-west-2b"
   }
 }
 
