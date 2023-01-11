@@ -7,5 +7,5 @@ shared_credentials_files = ["~/.aws/credentials"]
 resource "aws" "EC2" {
 ami = var.ami-id
 instance_type = var.instance_type
-key_name =  "demo"
+key_name =  var.pem-key
 }
