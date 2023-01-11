@@ -19,6 +19,7 @@ variable "zone" {
     1 = { zone = "eu-west-2a", ami = "ami-f976839e" }
     2 = { zone = "eu-west-2b", ami = "ami-01b8d743224353ffe" }
 
+
    # 1 = "eu-west-2a"
    # 2 = "eu-west-2b"
   }
